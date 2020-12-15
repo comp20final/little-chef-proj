@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Recommended</title>
+        <link rel="stylesheet" type = "text/css" a href="style.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <body onload="getRecipe()">
+	<h1>Here are some more recipes you may enjoy!</h1>
+		<div id="recipe" style="font-size: 20px"></div>
+    
+    <!-- Header goes here -->
+    <div class="header"><img src="logo.png" style="float:left; padding-left:20px;"></div><br>
+
+
+    <!-- Side naviation bar that pops up -->
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">Home</a>
+        <a href="favorites.html">Favorites</a>
+        <a href="recommended.html">Recommended</a>
+      </div>
+
+      <!-- Change the word based on the page we're currently on -->
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Recommended </span>
+      
+
+      <!-- Functions for the opening and closing of the navbar -->
+      <script>
+      function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+      function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+      </script>
+
+    <div id="main">
+        <div class="blockquote"> Look through our popular rated recipes! </div>
+        <div class="photowrapper">
+                
+        <!--DISPLAY RECIPES FROM USER DATABASE HERE -->
+        <div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+        
+        </div>
+    </div> <!-- end of main -->
+    	<script type="text/javascript" src="popular.js">
+		//
+		function getRecipe() {
+			const data = "null";
+
+		const xhr = new XMLHttpRequest();
+		xhr.withCredentials = false;
+		var id = 0;
+
+
+		xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === this.DONE) {
+				console.log(this.responseText);
+				var recipes = JSON.parse(this.responseText);
+				// var instruct = recipes.instructions;
+				// var items = recipes["extendedIngredients"];
+				var ingredientsArr= [];
+
+				for (var i = 0; i < recipes.length; i++){
+					var name = recipes[i]["title"];
+					ingredientsArr.push(name + "<br>");
+
+
+				}
+				
+				document.getElementById("recipe").innerHTML = ingredientsArr + "<br>";
+			}
+		});
+ 		var id = 156992;
+ 		// var id = start();
+		xhr.open("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/" + id + "/similar");
+		xhr.setRequestHeader("x-rapidapi-key", "38da8f5d71mshf0d055abd49828fp12390djsn6c52c14644fd");
+		xhr.setRequestHeader("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com");
+		document.getElementById("recipe").innerHTML;
+		xhr.send(data);
+	}
+	</script>
+    </body>
+</html>
