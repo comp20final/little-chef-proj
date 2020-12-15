@@ -1,0 +1,23 @@
+{
+  "name": "little-chef",
+  "version": "1.0.0",
+  "description": "node app ",
+  "main": "login.html",
+  "scripts": {
+    "start": "node login.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "calendar": "^0.1.1",
+    "mongodb": "^3.6.3"
+  }
+}
